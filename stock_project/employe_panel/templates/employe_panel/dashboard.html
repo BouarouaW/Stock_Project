@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            color: #333;
+        }
+
+        .dashboard-header a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 10px;
+        }
+
+        .dashboard-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .dashboard-section {
+            flex: 1 1 45%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .dashboard-section ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .dashboard-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .dashboard-section ul li a {
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .dashboard-section ul li a:hover {
+            color: #007bff;
+        }
+
+        .dashboard-section ul li a i {
+            margin-right: 10px;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Welcome to Employe Dashboard, {{ admin_name }}</h1>
+            <div>
+               
+                <form action="{% url 'logout' %}" method="post" id="logout-form">
+                    {% csrf_token %}
+                    <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </form>
+
+            </div>
+        </div>
+        <div class="dashboard-sections">
+
+
+            <div class="dashboard-section">
+                <h2>Consulter l'historique des commandes</h2>
+                <ul>
+                    <li><a href="{% url 'employe_panel:inscription_client'%}"><i class="fas fa-list-alt"></i> Inscrire un client</a></li>
+                    <li><a href="{% url 'employe_panel:ajouter_commande'%}"><i class="fas fa-list-alt"></i> Ajouter une commande</a></li>
+                    <li><a href="{% url 'employe_panel:command_history'%}"><i class="fas fa-list-alt"></i> Voir le suivi des commandes</a></li>
+                    <li><a href="{% url 'employe_panel:sales_trends'%}"><i class="fas fa-list-alt"></i> Tendences des ventes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
